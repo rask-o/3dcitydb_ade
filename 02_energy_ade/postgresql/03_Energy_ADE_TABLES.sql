@@ -1285,6 +1285,35 @@ COMMENT ON COLUMN citydb.nrg8_final_energy.nrg_car_co2_emission IS 'Energy carri
 COMMENT ON COLUMN citydb.nrg8_final_energy.nrg_car_co2_emission_unit IS 'CO2 emission units of measure';
 
 ----------------------------------------------------------------
+-- Table ENERGY_CARRIER
+----------------------------------------------------------------
+DROP TABLE IF EXISTS citydb.nrg8_energy_carrier CASCADE;
+CREATE TABLE IF NOT EXISTS citydb.nrg8_energy_carrier (
+	id serial PRIMARY KEY,
+--  	objectclass_id integer NOT NULL, 	-- This is a foreign key to objectclass.id
+	type varchar,				-- This is a foreign key to lu_energy_source.id
+	prim_nrg_factor numeric,
+	prim_nrg_factor_unit varchar,
+	nrg_density numeric,
+	nrg_density_unit varchar,
+	co2_emission numeric,
+	co2_emission_unit varchar
+);
+-- ALTER TABLE citydb.nrg8_energy_carrier OWNER TO postgres;
+
+-- CREATE INDEX nrg8_energy_carrier_objclass_id_fkx ON citydb.nrg8_energy_carrier USING btree (objectclass_id);
+CREATE INDEX nrg8_final_type_fkx ON citydb.nrg8_energy_carrier USING btree (type);
+
+-- COMMENT ON COLUMN citydb.nrg8_energy_carrier.objectclass_id IS 'Objectclass ID of the final energy';
+COMMENT ON COLUMN citydb.nrg8_energy_carrier.type IS 'Energy carrier: Type';
+COMMENT ON COLUMN citydb.nrg8_energy_carrier.prim_nrg_factor IS 'Energy carrier: Primary energy factor';
+COMMENT ON COLUMN citydb.nrg8_energy_carrier.prim_nrg_factor_unit IS 'Primary energy factor units of measure';
+COMMENT ON COLUMN citydb.nrg8_energy_carrier.nrg_density IS 'Energy carrier: Energy density';
+COMMENT ON COLUMN citydb.nrg8_energy_carrier.nrg_density_unit IS 'Energy density units of measure';
+COMMENT ON COLUMN citydb.nrg8_energy_carrier.co2_emission IS 'Energy carrier: CO2 emission';
+COMMENT ON COLUMN citydb.nrg8_energy_carrier.co2_emission_unit IS 'CO2 emission units of measure';
+
+----------------------------------------------------------------
 -- Table ENERGY_CONV_SYSTEM_TO_FINAL_ENERGY
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS citydb.nrg8_conv_sys_to_final_nrg CASCADE;
@@ -1955,6 +1984,11 @@ ALTER TABLE IF EXISTS citydb.nrg8_final_energy ADD CONSTRAINT nrg8_final_nrg_obj
 ALTER TABLE IF EXISTS citydb.nrg8_final_energy ADD CONSTRAINT nrg8_final_nrg_tseries_fk FOREIGN KEY (time_series_id) REFERENCES citydb.nrg8_time_series (id) MATCH FULL ON UPDATE CASCADE ON DELETE SET NULL;
 
 ALTER TABLE IF EXISTS citydb.nrg8_final_energy ADD CONSTRAINT nrg8_final_nrg_lu_nrg_source_fk FOREIGN KEY (nrg_car_type) REFERENCES citydb.nrg8_lu_energy_source (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
+
+-- FOREIGN KEY constraint on Table ENERGY_CARRIER
+-- ALTER TABLE IF EXISTS citydb.nrg8_energy_carrier ADD CONSTRAINT nrg8_final_nrg_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
+
+ALTER TABLE IF EXISTS citydb.nrg8_energy_carrier ADD CONSTRAINT nrg8_final_nrg_lu_nrg_source_fk FOREIGN KEY (type) REFERENCES citydb.nrg8_lu_energy_source (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
 
 -- FOREIGN KEY constraint on Table ENERGY_CONV_SYSTEM_TO_FINAL_ENERGY
 ALTER TABLE IF EXISTS citydb.nrg8_conv_sys_to_final_nrg ADD CONSTRAINT nrg8_conv_sys_to_final_nrg_nrg_conv_sys_fk FOREIGN KEY (conv_system_id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
