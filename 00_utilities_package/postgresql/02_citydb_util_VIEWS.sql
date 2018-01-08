@@ -221,6 +221,7 @@ SELECT
   gtc.cityobjectgroup_id, 
   cog.objectclass_id AS cog_objectclass_id, 
   o2.classname AS cog_classname, 
+	rcog.parent_cityobject_id,
   gtc.cityobject_id, 
   co.objectclass_id AS co_objectclass_id,
   o1.classname AS co_classname, 
@@ -230,12 +231,14 @@ FROM
   citydb.objectclass o1, 
   citydb.objectclass o2, 
   citydb.group_to_cityobject gtc, 
-  citydb.cityobject co
+	citydb.cityobject co,
+	citydb.cityobjectgroup rcog
 WHERE 
   cog.id = gtc.cityobjectgroup_id AND
   cog.objectclass_id = o2.id AND
   co.id = gtc.cityobject_id AND
-  co.objectclass_id = o1.id;
+  co.objectclass_id = o1.id AND 
+	rcog.id = gtc.cityobjectgroup_id;
 --ALTER VIEW citydb_view.group_to_cityobject OWNER TO postgres;
 
 ----------------------------------------------------------------
