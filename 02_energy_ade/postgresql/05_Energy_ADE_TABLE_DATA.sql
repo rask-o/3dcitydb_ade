@@ -393,9 +393,11 @@ INSERT INTO citydb.nrg8_lu_heat_source
 VALUES
 ('AmbientAir',                'Ambient air',                 NULL, NULL),
 ('Aquifer',                   'Aquifer',                     NULL, NULL),
+('DistributionNetwork',       'Distribution network',        NULL, NULL),
 ('ExhaustAir',                'Exhaust air',                 NULL, NULL),
 ('HorizontalGroundCollector', 'Horizontal ground collector', NULL, NULL),
-('VerticalGroundCollector',   'Vertical ground collector',   NULL, NULL)
+('VerticalGroundCollector',   'Vertical ground collector',   NULL, NULL),
+('WasteHeat',   'Waste heat',   NULL, 'Waste heat from e.g. industrial zones')
 ;
 
 -- Add entry into table LU_CELL
