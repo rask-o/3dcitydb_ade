@@ -123,6 +123,10 @@ INSERT INTO citydb.objectclass (id, classname, superclass_id, tablename, is_ade_
 (252,'MechanicalVentilation',242, 'nrg8_mech_ventilation', 1,3),
 (253,'Chiller',242, 'nrg8_chiller', 1,3),
 (254,'AirCompressor',242, 'nrg8_air_compressor', 1,3),
+(264,'ElectricityExchanger',242, 'nrg8_electricity_exchanger', 1,3),
+(265,'GasExchanger',242, 'nrg8_gas_exchanger', 1,3),
+(266,'OilExchanger',242, 'nrg8_oil_exchanger', 1,3),
+(267,'WoodExchanger',242, 'nrg8_wood_exchanger', 1,3),
 -- DataTypes
 (257,'FloorArea',1, 'nrg8_dimensional_attrib', 1, 1),
 (258,'VolumeType',1, 'nrg8_dimensional_attrib', 1, 1),

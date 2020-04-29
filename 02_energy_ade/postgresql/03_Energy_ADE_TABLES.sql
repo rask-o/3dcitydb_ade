@@ -1746,6 +1746,94 @@ COMMENT ON COLUMN citydb.nrg8_heat_exchanger.network_node_id IS 'Network node ID
 COMMENT ON COLUMN citydb.nrg8_heat_exchanger.prim_heat_supplier IS 'Primary heat supplier';
 
 ----------------------------------------------------------------
+-- Table ELECTRICITY_EXCHANGER
+----------------------------------------------------------------
+DROP TABLE IF EXISTS citydb.nrg8_electricity_exchanger CASCADE;
+CREATE TABLE IF NOT EXISTS citydb.nrg8_electricity_exchanger (
+	id integer PRIMARY KEY, 			-- This is a foreign key to conv_system.id
+	objectclass_id integer NOT NULL, 	-- This is a foreign key to objectclass.id
+	network_id integer,    				-- Link to a UtilityNetwork CityObject
+	network_node_id integer, 			-- Link to a UtilityNetwork CityObject
+	prim_electricity_supplier varchar
+);
+-- ALTER TABLE citydb.nrg8_electricity_exchanger OWNER TO postgres;
+
+CREATE INDEX nrg8_electricity_exchanger_objclass_id_fkx ON citydb.nrg8_electricity_exchanger USING btree (objectclass_id);
+CREATE INDEX nrg8_electricity_exchanger_network_id_fkx ON citydb.nrg8_electricity_exchanger USING btree (network_id);
+CREATE INDEX nrg8_electricity_exchanger_network_node_id_fkx ON citydb.nrg8_electricity_exchanger USING btree (network_node_id);
+
+COMMENT ON COLUMN citydb.nrg8_electricity_exchanger.objectclass_id IS 'Objectclass ID of the electricity exchanger';
+COMMENT ON COLUMN citydb.nrg8_electricity_exchanger.network_id IS 'Network ID';
+COMMENT ON COLUMN citydb.nrg8_electricity_exchanger.network_node_id IS 'Network node ID';
+COMMENT ON COLUMN citydb.nrg8_electricity_exchanger.prim_electricity_supplier IS 'Primary electricity supplier';
+
+----------------------------------------------------------------
+-- Table GAS_EXCHANGER
+----------------------------------------------------------------
+DROP TABLE IF EXISTS citydb.nrg8_gas_exchanger CASCADE;
+CREATE TABLE IF NOT EXISTS citydb.nrg8_gas_exchanger (
+	id integer PRIMARY KEY, 			-- This is a foreign key to conv_system.id
+	objectclass_id integer NOT NULL, 	-- This is a foreign key to objectclass.id
+	network_id integer,    				-- Link to a UtilityNetwork CityObject
+	network_node_id integer, 			-- Link to a UtilityNetwork CityObject
+	prim_gas_supplier varchar
+);
+-- ALTER TABLE citydb.nrg8_gas_exchanger OWNER TO postgres;
+
+CREATE INDEX nrg8_gas_exchanger_objclass_id_fkx ON citydb.nrg8_gas_exchanger USING btree (objectclass_id);
+CREATE INDEX nrg8_gas_exchanger_network_id_fkx ON citydb.nrg8_gas_exchanger USING btree (network_id);
+CREATE INDEX nrg8_gas_exchanger_network_node_id_fkx ON citydb.nrg8_gas_exchanger USING btree (network_node_id);
+
+COMMENT ON COLUMN citydb.nrg8_gas_exchanger.objectclass_id IS 'Objectclass ID of the gas exchanger';
+COMMENT ON COLUMN citydb.nrg8_gas_exchanger.network_id IS 'Network ID';
+COMMENT ON COLUMN citydb.nrg8_gas_exchanger.network_node_id IS 'Network node ID';
+COMMENT ON COLUMN citydb.nrg8_gas_exchanger.prim_gas_supplier IS 'Primary gas supplier';
+
+----------------------------------------------------------------
+-- Table OIL_EXCHANGER
+----------------------------------------------------------------
+DROP TABLE IF EXISTS citydb.nrg8_oil_exchanger CASCADE;
+CREATE TABLE IF NOT EXISTS citydb.nrg8_oil_exchanger (
+	id integer PRIMARY KEY, 			-- This is a foreign key to conv_system.id
+	objectclass_id integer NOT NULL, 	-- This is a foreign key to objectclass.id
+	network_id integer,    				-- Link to a UtilityNetwork CityObject
+	network_node_id integer, 			-- Link to a UtilityNetwork CityObject
+	prim_oil_supplier varchar
+);
+-- ALTER TABLE citydb.nrg8_oil_exchanger OWNER TO postgres;
+
+CREATE INDEX nrg8_oil_exchanger_objclass_id_fkx ON citydb.nrg8_oil_exchanger USING btree (objectclass_id);
+CREATE INDEX nrg8_oil_exchanger_network_id_fkx ON citydb.nrg8_oil_exchanger USING btree (network_id);
+CREATE INDEX nrg8_oil_exchanger_network_node_id_fkx ON citydb.nrg8_oil_exchanger USING btree (network_node_id);
+
+COMMENT ON COLUMN citydb.nrg8_oil_exchanger.objectclass_id IS 'Objectclass ID of the oil exchanger';
+COMMENT ON COLUMN citydb.nrg8_oil_exchanger.network_id IS 'Network ID';
+COMMENT ON COLUMN citydb.nrg8_oil_exchanger.network_node_id IS 'Network node ID';
+COMMENT ON COLUMN citydb.nrg8_oil_exchanger.prim_oil_supplier IS 'Primary oil supplier';
+
+----------------------------------------------------------------
+-- Table WOOD_EXCHANGER
+----------------------------------------------------------------
+DROP TABLE IF EXISTS citydb.nrg8_wood_exchanger CASCADE;
+CREATE TABLE IF NOT EXISTS citydb.nrg8_wood_exchanger (
+	id integer PRIMARY KEY, 			-- This is a foreign key to conv_system.id
+	objectclass_id integer NOT NULL, 	-- This is a foreign key to objectclass.id
+	network_id integer,    				-- Link to a UtilityNetwork CityObject
+	network_node_id integer, 			-- Link to a UtilityNetwork CityObject
+	prim_wood_supplier varchar
+);
+-- ALTER TABLE citydb.nrg8_wood_exchanger OWNER TO postgres;
+
+CREATE INDEX nrg8_wood_exchanger_objclass_id_fkx ON citydb.nrg8_wood_exchanger USING btree (objectclass_id);
+CREATE INDEX nrg8_wood_exchanger_network_id_fkx ON citydb.nrg8_wood_exchanger USING btree (network_id);
+CREATE INDEX nrg8_wood_exchanger_network_node_id_fkx ON citydb.nrg8_wood_exchanger USING btree (network_node_id);
+
+COMMENT ON COLUMN citydb.nrg8_wood_exchanger.objectclass_id IS 'Objectclass ID of the wood exchanger';
+COMMENT ON COLUMN citydb.nrg8_wood_exchanger.network_id IS 'Network ID';
+COMMENT ON COLUMN citydb.nrg8_wood_exchanger.network_node_id IS 'Network node ID';
+COMMENT ON COLUMN citydb.nrg8_wood_exchanger.prim_wood_supplier IS 'Primary wood supplier';
+
+----------------------------------------------------------------
 -- Table MECHANICAL_VENTILATION
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS citydb.nrg8_mech_ventilation CASCADE;
@@ -2084,6 +2172,22 @@ ALTER TABLE IF EXISTS citydb.nrg8_combined_heat_power ADD CONSTRAINT nrg8_comb_h
 -- FOREIGN KEY constraint on Table HEAT_EXCHANGER
 ALTER TABLE IF EXISTS citydb.nrg8_heat_exchanger ADD CONSTRAINT nrg8_heat_exch_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
 ALTER TABLE IF EXISTS citydb.nrg8_heat_exchanger ADD CONSTRAINT nrg8_heat_exch_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- FOREIGN KEY constraint on Table ELECTRICITY_EXCHANGER
+ALTER TABLE IF EXISTS citydb.nrg8_electricity_exchanger ADD CONSTRAINT nrg8_electricity_exch_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
+ALTER TABLE IF EXISTS citydb.nrg8_electricity_exchanger ADD CONSTRAINT nrg8_electricity_exch_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- FOREIGN KEY constraint on Table GAS_EXCHANGER
+ALTER TABLE IF EXISTS citydb.nrg8_gas_exchanger ADD CONSTRAINT nrg8_gas_exch_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
+ALTER TABLE IF EXISTS citydb.nrg8_gas_exchanger ADD CONSTRAINT nrg8_gas_exch_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- FOREIGN KEY constraint on Table OIL_EXCHANGER
+ALTER TABLE IF EXISTS citydb.nrg8_oil_exchanger ADD CONSTRAINT nrg8_oil_exch_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
+ALTER TABLE IF EXISTS citydb.nrg8_oil_exchanger ADD CONSTRAINT nrg8_oil_exch_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- FOREIGN KEY constraint on Table WOOD_EXCHANGER
+ALTER TABLE IF EXISTS citydb.nrg8_wood_exchanger ADD CONSTRAINT nrg8_wood_exch_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
+ALTER TABLE IF EXISTS citydb.nrg8_wood_exchanger ADD CONSTRAINT nrg8_wood_exch_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
 
 -- FOREIGN KEY constraint on Table MECH_VENTILATION
 ALTER TABLE IF EXISTS citydb.nrg8_mech_ventilation ADD CONSTRAINT nrg8_mech_vent_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
