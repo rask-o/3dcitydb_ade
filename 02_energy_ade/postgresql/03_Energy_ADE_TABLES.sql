@@ -1292,11 +1292,11 @@ CREATE TABLE IF NOT EXISTS citydb.nrg8_energy_carrier (
 	id serial PRIMARY KEY,
 --  	objectclass_id integer NOT NULL, 	-- This is a foreign key to objectclass.id
 	type varchar,				-- This is a foreign key to lu_energy_source.id
-	prim_nrg_factor numeric,
+	prim_nrg_factor double precision,
 	prim_nrg_factor_unit varchar,
-	nrg_density numeric,
+	nrg_density double precision,
 	nrg_density_unit varchar,
-	co2_emission numeric,
+	co2_emission double precision,
 	co2_emission_unit varchar
 );
 -- ALTER TABLE citydb.nrg8_energy_carrier OWNER TO postgres;
