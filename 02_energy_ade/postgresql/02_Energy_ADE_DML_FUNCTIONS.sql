@@ -698,7 +698,7 @@ FOR ho_id IN EXECUTE format('SELECT id FROM %I.nrg8_household WHERE occupants_id
 	END IF;
 END LOOP;
 
--- delete the household itself
+-- delete the occupants itself
 EXECUTE format('DELETE FROM %I.nrg8_occupants WHERE id = %L RETURNING id', schema_name, oc_id) INTO deleted_id;
 RETURN deleted_id;
 EXCEPTION
@@ -826,7 +826,7 @@ IF so_id IS NOT NULL THEN
 	EXECUTE 'SELECT citydb_pkg.delete_surface_geometry($1, 0, $2)' USING so_id, schema_name;
 END IF;
 
--- delete the usage zone itself
+-- delete the usage zone itself (this will automatically delete depending objects like dimensional attributes)
 EXECUTE format('DELETE FROM %I.nrg8_usage_zone WHERE id = %L RETURNING id', schema_name, uz_id) INTO deleted_id;
 -- conduct general cleaning of cityobject
 EXECUTE 'SELECT citydb_pkg.intern_delete_cityobject($1, $2)' USING uz_id, schema_name;
