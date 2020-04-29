@@ -465,18 +465,19 @@ TRUNCATE citydb.nrg8_lu_energy_source CASCADE;
 INSERT INTO citydb.nrg8_lu_energy_source
 (id, name, name_codespace, description)
 VALUES
-('ChilledAir',   'Chilled air',   NULL, NULL),
-('ChilledWater', 'Chilled water', NULL, NULL),
-('Coal',         'Coal',          NULL, NULL),
-('Electricity',  'Electricity',   NULL, NULL),
-('FuelOil',      'Fuel oil',      NULL, NULL),
-('HotAir',       'Hot air',       NULL, NULL),
-('HotWater',     'Hot water',     NULL, NULL),
-('NaturalGas',   'Natural gas',   NULL, NULL),
-('Propane',      'Propane',       NULL, NULL),
-('Steam',        'Steam',         NULL, NULL),
-('WoodChips',    'Wood chips',    NULL, NULL),
-('WoodPellets',  'Wood pellets',  NULL, NULL)
+('ChilledAir',   			'Chilled air',   			NULL, NULL),
+('ChilledWater', 			'Chilled water', 			NULL, NULL),
+('Coal',         			'Coal',          			NULL, NULL),
+('Electricity',  			'Electricity',   			NULL, NULL),
+('FuelOil',      			'Fuel oil',      			NULL, NULL),
+('HotAir',       			'Hot air',       			NULL, NULL),
+('HotWater',     			'Hot water',     			NULL, NULL),
+('NaturalGas',   			'Natural gas',   			NULL, NULL),
+('Propane',      			'Propane',       			NULL, NULL),
+('SolarIrradiation',	'Solar irradiation',	NULL, NULL),
+('Steam',        			'Steam',         			NULL, NULL),
+('WoodChips',    			'Wood chips',    			NULL, NULL),
+('WoodPellets',  			'Wood pellets',  			NULL, NULL)
 ;
 
 
