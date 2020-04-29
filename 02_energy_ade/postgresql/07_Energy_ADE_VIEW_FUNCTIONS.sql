@@ -199,7 +199,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_conv_system (id: %): %', id, SQLERRM;
@@ -219,7 +219,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_air_compressor (id: %): %', id, SQLERRM;
@@ -239,7 +239,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_boiler (id: %): %', id, SQLERRM;
@@ -259,7 +259,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_chiller (id: %): %', id, SQLERRM;
@@ -279,7 +279,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_combined_heat_power (id: %): %', id, SQLERRM;
@@ -299,7 +299,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_electrical_resistance (id: %): %', id, SQLERRM;
@@ -319,7 +319,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_heat_exchanger (id: %): %', id, SQLERRM;
@@ -339,7 +339,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_heat_pump (id: %): %', id, SQLERRM;
@@ -359,7 +359,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_mech_ventilation (id: %): %', id, SQLERRM;
@@ -379,7 +379,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_photovoltaic_thermal_system (id: %): %', id, SQLERRM;
@@ -399,7 +399,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_photovoltaic_system (id: %): %', id, SQLERRM;
@@ -419,7 +419,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_conv_system(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_conv_system(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_solar_thermal_system (id: %): %', id, SQLERRM;
@@ -1219,7 +1219,7 @@ $BODY$
 DECLARE
 	deleted_id integer;
 BEGIN
-deleted_id=citydb_pkg.delete_usage_zone(id, schema_name);
+deleted_id=citydb_pkg.nrg8_delete_usage_zone(id, schema_name);
 RETURN deleted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_delete_usage_zone (id: %): %', id, SQLERRM;
