@@ -2358,6 +2358,162 @@ WHERE
 --ALTER VIEW citydb_view.nrg8_conv_system_electricity_exchanger OWNER TO postgres;
 
 ----------------------------------------------------------------
+-- View CONV_SYSTEM_GAS_EXCHANGER
+----------------------------------------------------------------
+DROP VIEW IF EXISTS citydb_view.nrg8_conv_system_gas_exchanger CASCADE;
+CREATE OR REPLACE VIEW citydb_view.nrg8_conv_system_gas_exchanger AS
+SELECT
+  co.id,
+  co.objectclass_id,
+  o.classname,
+  co.gmlid,
+  co.gmlid_codespace,
+  co.name,
+  co.name_codespace,
+  co.description,
+  co.envelope,
+  co.creation_date,
+  co.termination_date,
+  co.relative_to_terrain,
+  co.relative_to_water,
+  co.last_modification_date,
+  co.updating_person,
+  co.reason_for_update,
+  co.lineage,
+  cs.model,
+  cs.nbr,
+  cs.year_of_manufacture,
+  cs.inst_nom_pwr,
+  cs.inst_nom_pwr_unit,
+  cs.nom_effcy,
+  cs.effcy_indicator,
+  cs.start_of_life,
+  cs.life_expect_value,
+  cs.life_expect_value_unit,
+  cs.main_maint_interval,
+  cs.main_maint_interval_unit,
+  cs.inst_in_ctyobj_id,
+  cs.cityobject_id,
+  he.network_id,
+  he.network_node_id,
+  he.prim_gas_supplier
+FROM
+  citydb.cityobject co,
+  citydb.objectclass o,
+  citydb.nrg8_conv_system cs,
+  citydb.nrg8_gas_exchanger he
+WHERE
+  o.id = co.objectclass_id AND
+  cs.id = co.id AND
+  he.id = cs.id AND
+  o.classname = 'GasExchanger';
+--ALTER VIEW citydb_view.nrg8_conv_system_gas_exchanger OWNER TO postgres;
+
+----------------------------------------------------------------
+-- View CONV_SYSTEM_OIL_EXCHANGER
+----------------------------------------------------------------
+DROP VIEW IF EXISTS citydb_view.nrg8_conv_system_oil_exchanger CASCADE;
+CREATE OR REPLACE VIEW citydb_view.nrg8_conv_system_oil_exchanger AS
+SELECT
+  co.id,
+  co.objectclass_id,
+  o.classname,
+  co.gmlid,
+  co.gmlid_codespace,
+  co.name,
+  co.name_codespace,
+  co.description,
+  co.envelope,
+  co.creation_date,
+  co.termination_date,
+  co.relative_to_terrain,
+  co.relative_to_water,
+  co.last_modification_date,
+  co.updating_person,
+  co.reason_for_update,
+  co.lineage,
+  cs.model,
+  cs.nbr,
+  cs.year_of_manufacture,
+  cs.inst_nom_pwr,
+  cs.inst_nom_pwr_unit,
+  cs.nom_effcy,
+  cs.effcy_indicator,
+  cs.start_of_life,
+  cs.life_expect_value,
+  cs.life_expect_value_unit,
+  cs.main_maint_interval,
+  cs.main_maint_interval_unit,
+  cs.inst_in_ctyobj_id,
+  cs.cityobject_id,
+  he.network_id,
+  he.network_node_id,
+  he.prim_oil_supplier
+FROM
+  citydb.cityobject co,
+  citydb.objectclass o,
+  citydb.nrg8_conv_system cs,
+  citydb.nrg8_oil_exchanger he
+WHERE
+  o.id = co.objectclass_id AND
+  cs.id = co.id AND
+  he.id = cs.id AND
+  o.classname = 'OilExchanger';
+--ALTER VIEW citydb_view.nrg8_conv_system_oil_exchanger OWNER TO postgres;
+
+----------------------------------------------------------------
+-- View CONV_SYSTEM_WOOD_EXCHANGER
+----------------------------------------------------------------
+DROP VIEW IF EXISTS citydb_view.nrg8_conv_system_wood_exchanger CASCADE;
+CREATE OR REPLACE VIEW citydb_view.nrg8_conv_system_wood_exchanger AS
+SELECT
+  co.id,
+  co.objectclass_id,
+  o.classname,
+  co.gmlid,
+  co.gmlid_codespace,
+  co.name,
+  co.name_codespace,
+  co.description,
+  co.envelope,
+  co.creation_date,
+  co.termination_date,
+  co.relative_to_terrain,
+  co.relative_to_water,
+  co.last_modification_date,
+  co.updating_person,
+  co.reason_for_update,
+  co.lineage,
+  cs.model,
+  cs.nbr,
+  cs.year_of_manufacture,
+  cs.inst_nom_pwr,
+  cs.inst_nom_pwr_unit,
+  cs.nom_effcy,
+  cs.effcy_indicator,
+  cs.start_of_life,
+  cs.life_expect_value,
+  cs.life_expect_value_unit,
+  cs.main_maint_interval,
+  cs.main_maint_interval_unit,
+  cs.inst_in_ctyobj_id,
+  cs.cityobject_id,
+  he.network_id,
+  he.network_node_id,
+  he.prim_wood_supplier
+FROM
+  citydb.cityobject co,
+  citydb.objectclass o,
+  citydb.nrg8_conv_system cs,
+  citydb.nrg8_wood_exchanger he
+WHERE
+  o.id = co.objectclass_id AND
+  cs.id = co.id AND
+  he.id = cs.id AND
+  o.classname = 'WoodExchanger';
+--ALTER VIEW citydb_view.nrg8_conv_system_wood_exchanger OWNER TO postgres;
+
+----------------------------------------------------------------
 -- View CONV_SYSTEM_MECH_VENTILATION
 ----------------------------------------------------------------
 DROP VIEW IF EXISTS citydb_view.nrg8_conv_system_mech_ventilation CASCADE;
