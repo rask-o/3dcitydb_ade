@@ -3223,7 +3223,9 @@ DECLARE
 	objectclass_id integer;
 	inserted_id integer;
 BEGIN
-objectclass_id=citydb_pkg.objectclass_classname_to_id(class_name, db_prefix, p_schema_name);
+-- objectclass_classname_to_id could not find the OilExchanger although in the objectclass table and GasExchanger worked
+-- not ideal but had to move on so just hardcoded class id
+objectclass_id=266;--citydb_pkg.objectclass_classname_to_id(class_name, db_prefix, p_schema_name);
 
 inserted_id=citydb_pkg.insert_cityobject(
     id                    :=p_id,
@@ -3363,7 +3365,9 @@ DECLARE
 	objectclass_id integer;
 	inserted_id integer;
 BEGIN
-objectclass_id=citydb_pkg.objectclass_classname_to_id(class_name, db_prefix, p_schema_name);
+-- objectclass_classname_to_id could not find the WoodExchanger although in the objectclass table and GasExchanger worked
+-- not ideal but had to move on so just hardcoded class id
+objectclass_id=267; --citydb_pkg.objectclass_classname_to_id(class_name, db_prefix, p_schema_name);
 
 inserted_id=citydb_pkg.insert_cityobject(
     id                    :=p_id,
