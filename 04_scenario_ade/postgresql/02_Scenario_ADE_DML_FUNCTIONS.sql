@@ -502,7 +502,7 @@ LANGUAGE 'plpgsql';
 ----------------------------------------------------------------
 -- Function SCN_INSERT_OPERATION
 ----------------------------------------------------------------
--- DROP FUNCTION IF EXISTS citydb_pkg.scn2_insert_operation (integer, integer, integer, integer, varchar, varchar, varchar, varchar, text, integer, varchar, varchar, varchar, integer, varchar, varchar, integer, numeric, numeric[], varchar, timestamptz, varchar, bytea, geometry, integer) CASCADE;
+-- DROP FUNCTION IF EXISTS citydb_pkg.scn2_insert_operation (integer, integer, integer, integer, varchar, varchar, varchar, varchar, text, integer, varchar, varchar, varchar, varchar, integer, varchar, varchar, varchar, varchar, varchar, numeric, numeric, double precision, varchar, timestamptz, varchar, geometry, integer, varchar) CASCADE;
 CREATE OR REPLACE FUNCTION citydb_pkg.scn2_insert_operation (
 objectclass_id            integer,
 id                        integer             DEFAULT NULL,
@@ -522,7 +522,7 @@ citydb_object_id          integer             DEFAULT NULL,
 citydb_table_name         varchar             DEFAULT NULL,
 citydb_column_name        varchar             DEFAULT NULL,
 citydb_function           varchar             DEFAULT NULL,
-citydb_genericattrib_name varchar             DEFAULT NULL,
+citydb_attrib_name varchar             DEFAULT NULL,
 strval                    varchar             DEFAULT NULL,
 booleanval                numeric(1,0)        DEFAULT NULL,
 intval                    numeric(8,0)        DEFAULT NULL,
@@ -556,7 +556,7 @@ DECLARE
   p_citydb_table_name         varchar            := citydb_table_name    ;
   p_citydb_column_name        varchar            := citydb_column_name   ;
   p_citydb_function           varchar            := citydb_function      ;
-  p_citydb_genericattrib_name varchar            := citydb_genericattrib_name;  
+  p_citydb_attrib_name varchar            := citydb_attrib_name;  
   p_strval                    varchar            := strval               ;
   p_booleanval                numeric(1,0)       := booleanval           ;
   p_intval                    numeric(8,0)       := intval               ;
@@ -599,7 +599,7 @@ EXECUTE format('INSERT INTO %I.scn2_operation (
  citydb_object_id         ,
  citydb_column_name       ,
  citydb_function          ,
- citydb_genericattrib_name,
+ citydb_attrib_name,
  strval                   ,
  booleanval               ,
  intval                   ,
@@ -633,7 +633,7 @@ EXECUTE format('INSERT INTO %I.scn2_operation (
  p_citydb_object_id         ,
  p_citydb_column_name       ,
  p_citydb_function          ,
- p_citydb_genericattrib_name,
+ p_citydb_attrib_name,
  p_strval                   ,
  p_booleanval               ,
  p_intval                   ,
