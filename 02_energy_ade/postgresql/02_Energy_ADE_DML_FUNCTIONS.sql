@@ -1455,6 +1455,7 @@ IF classname IS NOT NULL THEN
 	     classname = 'HeatPump' OR
 	     classname = 'CombinedHeatPower' OR
 	     classname = 'HeatExchanger' OR
+	     classname = 'HydraulicPump' OR
 	     classname = 'MechanicalVentilation' OR
 	     classname = 'Chiller' OR
 	     classname = 'AirCompressor'           THEN deleted_id := citydb_pkg.nrg8_delete_conv_system(co_id, schema_name);
@@ -1566,6 +1567,63 @@ EXECUTE format('
 RETURN inserted_id;
 EXCEPTION
 	WHEN OTHERS THEN RAISE NOTICE 'citydb_pkg.nrg8_insert_air_compressor (id: %): %', p_id, SQLERRM;
+END;
+$$
+LANGUAGE 'plpgsql';
+
+----------------------------------------------------------------
+-- Function NRG8_INSERT_HYDRAULIC_PUMP
+----------------------------------------------------------------
+-- DROP FUNCTION IF EXISTS citydb_pkg.nrg8_insert_hydraulic_pump (integer, integer, character varying, numeric, character varying) CASCADE;
+CREATE OR REPLACE FUNCTION citydb_pkg.nrg8_insert_hydraulic_pump (
+  objectclass_id       integer,
+  id                   integer,
+  pump_type            character varying DEFAULT NULL,
+  pressure             numeric DEFAULT NULL,
+  pressure_unit        character varying DEFAULT NULL,
+  schema_name          varchar DEFAULT 'citydb'::varchar
+)
+RETURNS integer
+AS
+$$
+DECLARE
+  p_id                 integer;
+  p_objectclass_id     integer;
+  p_pump_type          character varying;
+  p_pressure           numeric;
+  p_pressure_unit      character varying;
+--
+  p_schema_name        varchar;
+  inserted_id integer;
+BEGIN
+-- Pass values to internal prefixed variables to avoid potential homonymy issues
+  p_id                 :=id;
+  p_objectclass_id     :=objectclass_id;
+  p_pump_type          :=pump_type;
+  p_pressure           :=pressure;
+  p_pressure_unit      :=pressure_unit;
+  p_schema_name        :=schema_name;
+
+EXECUTE format('
+    INSERT INTO %I.nrg8_hydraulic_pump (
+     id,
+     objectclass_id,
+     pump_type,
+     pressure,
+     pressure_unit
+    ) VALUES (
+    %L, %L, %L, %L, %L
+    ) RETURNING id',
+    p_schema_name,
+    p_id,
+    p_objectclass_id,
+    p_pump_type,
+    p_pressure,
+    p_pressure_unit
+) INTO inserted_id;
+RETURN inserted_id;
+EXCEPTION
+	WHEN OTHERS THEN RAISE NOTICE 'citydb_pkg.nrg8_insert_hydraulic_pump (id: %): %', p_id, SQLERRM;
 END;
 $$
 LANGUAGE 'plpgsql';

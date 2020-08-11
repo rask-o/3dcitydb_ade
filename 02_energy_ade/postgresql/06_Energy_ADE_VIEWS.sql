@@ -2668,7 +2668,59 @@ WHERE
   o.classname = 'AirCompressor';
 --ALTER VIEW citydb_view.nrg8_conv_system_air_compressor OWNER TO postgres;
 
+---------------------------------------------------------------
+-- View CONV_SYSTEM_HYDRAULIC_PUMP
 ----------------------------------------------------------------
+DROP VIEW IF EXISTS citydb_view.nrg8_conv_system_hydraulic_pump CASCADE;
+CREATE OR REPLACE VIEW citydb_view.nrg8_conv_system_hydraulic_pump AS
+SELECT
+  co.id,
+  co.objectclass_id,
+  o.classname,
+  co.gmlid,
+  co.gmlid_codespace,
+  co.name,
+  co.name_codespace,
+  co.description,
+  co.envelope,
+  co.creation_date,
+  co.termination_date,
+  co.relative_to_terrain,
+  co.relative_to_water,
+  co.last_modification_date,
+  co.updating_person,
+  co.reason_for_update,
+  co.lineage,
+  cs.model,
+  cs.nbr,
+  cs.year_of_manufacture,
+  cs.inst_nom_pwr,
+  cs.inst_nom_pwr_unit,
+  cs.nom_effcy,
+  cs.effcy_indicator,
+  cs.start_of_life,
+  cs.life_expect_value,
+  cs.life_expect_value_unit,
+  cs.main_maint_interval,
+  cs.main_maint_interval_unit,
+  cs.inst_in_ctyobj_id,
+  cs.cityobject_id,
+  ac.pump_type,
+  ac.pressure,
+  ac.pressure_unit
+FROM
+  citydb.cityobject co,
+  citydb.objectclass o,
+  citydb.nrg8_conv_system cs,
+  citydb.nrg8_hydraulic_pump ac
+WHERE
+  o.id = co.objectclass_id AND
+  cs.id = co.id AND
+  ac.id = cs.id AND
+  o.classname = 'HydraulicPump';
+--ALTER VIEW citydb_view.nrg8_conv_system_hydraulic_pump OWNER TO postgres;
+
+---------------------------------------------------------------
 -- View ENERGY_DEMAND_TS
 ----------------------------------------------------------------
 CREATE OR REPLACE VIEW citydb_view.nrg8_energy_demand_ts AS

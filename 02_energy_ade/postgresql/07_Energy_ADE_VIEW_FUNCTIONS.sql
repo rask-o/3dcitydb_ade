@@ -3569,6 +3569,146 @@ $BODY$
 LANGUAGE plpgsql VOLATILE;
 
 ---------------------------------------------------------------
+-- Function INSERT_HYDRAULIC_PUMP
+---------------------------------------------------------------
+CREATE OR REPLACE FUNCTION citydb_view.nrg8_insert_hydraulic_pump(
+  id                     integer DEFAULT NULL,
+  gmlid                  varchar(256) DEFAULT NULL,
+  gmlid_codespace        varchar(1000) DEFAULT NULL,
+  name                   varchar(1000) DEFAULT NULL,
+  name_codespace         varchar(4000) DEFAULT NULL,
+  description            varchar(4000) DEFAULT NULL,
+  envelope               geometry DEFAULT NULL,
+  creation_date          timestamp(0) with time zone DEFAULT NULL,
+  termination_date       timestamp(0) with time zone DEFAULT NULL,
+  relative_to_terrain    varchar(256) DEFAULT NULL,
+  relative_to_water      varchar(256) DEFAULT NULL,
+  last_modification_date timestamp with time zone DEFAULT NULL,
+  updating_person        varchar(256) DEFAULT NULL,
+  reason_for_update      varchar(4000) DEFAULT NULL,
+  lineage                varchar(256) DEFAULT NULL,
+--
+  model                    character varying DEFAULT NULL,
+  nbr                      integer DEFAULT NULL,
+  year_of_manufacture      integer DEFAULT NULL,
+  inst_nom_pwr             numeric DEFAULT NULL,
+  inst_nom_pwr_unit        character varying DEFAULT NULL,
+  nom_effcy                numeric DEFAULT NULL,
+  effcy_indicator          character varying DEFAULT NULL,
+  start_of_life            date DEFAULT NULL,
+  life_expect_value        numeric DEFAULT NULL,
+  life_expect_value_unit   character varying DEFAULT NULL,
+  main_maint_interval      numeric DEFAULT NULL,
+  main_maint_interval_unit character varying DEFAULT NULL,
+  inst_in_ctyobj_id        integer DEFAULT NULL,
+  cityobject_id            integer DEFAULT NULL,
+--
+  pump_type       varchar DEFAULT NULL,
+  pressure        numeric DEFAULT NULL,
+  pressure_unit   varchar DEFAULT NULL,
+--
+  schema_name varchar DEFAULT 'citydb'::varchar
+)
+RETURNS integer AS
+$BODY$
+DECLARE
+  p_id                     integer                     := id                    ;
+  p_gmlid                  varchar(256)                := gmlid                 ;
+  p_gmlid_codespace        varchar(1000)               := gmlid_codespace       ;
+  p_name                   varchar(1000)               := name                  ;
+  p_name_codespace         varchar(4000)               := name_codespace        ;
+  p_description            varchar(4000)               := description           ;
+  p_envelope               geometry                    := envelope              ;
+  p_creation_date          timestamp(0) with time zone := creation_date         ;
+  p_termination_date       timestamp(0) with time zone := termination_date      ;
+  p_relative_to_terrain    varchar(256)                := relative_to_terrain   ;
+  p_relative_to_water      varchar(256)                := relative_to_water     ;
+  p_last_modification_date timestamp with time zone    := last_modification_date;
+  p_updating_person        varchar(256)                := updating_person       ;
+  p_reason_for_update      varchar(4000)               := reason_for_update     ;
+  p_lineage                varchar(256)                := lineage               ;
+--
+  p_model                    varchar := model                   ;
+  p_nbr                      integer := nbr                     ;
+  p_year_of_manufacture      integer := year_of_manufacture     ;
+  p_inst_nom_pwr             numeric := inst_nom_pwr            ;
+  p_inst_nom_pwr_unit        varchar := inst_nom_pwr_unit       ;
+  p_nom_effcy                numeric := nom_effcy               ;
+  p_effcy_indicator          varchar := effcy_indicator         ;
+  p_start_of_life            date    := start_of_life           ;
+  p_life_expect_value        numeric := life_expect_value       ;
+  p_life_expect_value_unit   varchar := life_expect_value_unit  ;
+  p_main_maint_interval      numeric := main_maint_interval     ;
+  p_main_maint_interval_unit varchar := main_maint_interval_unit;
+  p_inst_in_ctyobj_id        integer := inst_in_ctyobj_id       ;
+  p_cityobject_id            integer := cityobject_id           ;
+--
+  p_pump_type       varchar := pump_type;
+  p_pressure        numeric := pressure       ;
+  p_pressure_unit   varchar := pressure_unit  ;
+--
+  p_schema_name varchar := schema_name;
+	class_name varchar DEFAULT 'HydraulicPump'::varchar;
+	db_prefix varchar DEFAULT 'nrg8';
+	objectclass_id integer;
+	inserted_id integer;
+BEGIN
+objectclass_id=citydb_pkg.objectclass_classname_to_id(class_name, db_prefix, p_schema_name);
+
+inserted_id=citydb_pkg.insert_cityobject(
+    id                    :=p_id,
+    objectclass_id        :=objectclass_id,
+    gmlid                 :=p_gmlid,
+    gmlid_codespace       :=p_gmlid_codespace,
+    name                  :=p_name,
+    name_codespace        :=p_name_codespace,
+    description           :=p_description,
+    envelope              :=p_envelope,
+    creation_date         :=p_creation_date,
+    termination_date      :=p_termination_date,
+    relative_to_terrain   :=p_relative_to_terrain,
+    relative_to_water     :=p_relative_to_water,
+    last_modification_date:=p_last_modification_date,
+    updating_person       :=p_updating_person,
+    reason_for_update     :=p_reason_for_update,
+    lineage               :=p_lineage,
+    schema_name           :=p_schema_name
+);
+PERFORM citydb_pkg.nrg8_insert_conv_system(
+    id                      :=inserted_id,
+    objectclass_id          :=objectclass_id,
+    model                   :=p_model,
+    nbr                     :=p_nbr,
+    year_of_manufacture     :=p_year_of_manufacture,
+    inst_nom_pwr            :=p_inst_nom_pwr,
+    inst_nom_pwr_unit       :=p_inst_nom_pwr_unit,
+    nom_effcy               :=p_nom_effcy,
+    effcy_indicator         :=p_effcy_indicator,
+    start_of_life           :=p_start_of_life,
+    life_expect_value       :=p_life_expect_value,
+    life_expect_value_unit  :=p_life_expect_value_unit,
+    main_maint_interval     :=p_main_maint_interval,
+    main_maint_interval_unit:=p_main_maint_interval_unit,
+    inst_in_ctyobj_id       :=p_inst_in_ctyobj_id,
+    cityobject_id           :=p_cityobject_id,
+    schema_name             :=p_schema_name
+);
+PERFORM citydb_pkg.nrg8_insert_hydraulic_pump(
+    id             :=inserted_id,
+    objectclass_id :=objectclass_id,
+    pump_type      :=p_pump_type,
+    pressure       :=p_pressure,
+    pressure_unit  :=p_pressure_unit,
+    schema_name    :=p_schema_name
+);
+RETURN inserted_id;
+EXCEPTION
+	WHEN OTHERS THEN RAISE NOTICE 'citydb_view.nrg8_insert_hydraulic_pump(): %', SQLERRM;
+END;
+$BODY$
+LANGUAGE plpgsql VOLATILE;
+
+---------------------------------------------------------------
 -- Function INSERT_MECH_VENTILATION
 ---------------------------------------------------------------
 CREATE OR REPLACE FUNCTION citydb_view.nrg8_insert_mech_ventilation(

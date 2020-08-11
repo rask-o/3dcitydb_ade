@@ -346,6 +346,20 @@ description text
 CREATE INDEX nrg8_lu_compressor_name_inx ON citydb.nrg8_lu_compressor USING btree (name, name_codespace);
 
 ----------------------------------------------------------------
+-- Table LU_PUMP
+----------------------------------------------------------------
+DROP TABLE IF EXISTS citydb.nrg8_lu_pump CASCADE;
+CREATE TABLE citydb.nrg8_lu_pump (
+id varchar PRIMARY KEY,
+name varchar,
+name_codespace varchar,
+description text
+);
+-- ALTER TABLE citydb.nrg8_lu_pump OWNER TO postgres;
+
+CREATE INDEX nrg8_lu_pump_name_inx ON citydb.nrg8_lu_pump USING btree (name, name_codespace);
+
+----------------------------------------------------------------
 -- Table LU_CONDENSATION
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS citydb.nrg8_lu_condensation CASCADE;
@@ -1894,6 +1908,27 @@ COMMENT ON COLUMN citydb.nrg8_air_compressor.compressor_type IS 'Type of compres
 COMMENT ON COLUMN citydb.nrg8_air_compressor.pressure IS 'Pressure';
 COMMENT ON COLUMN citydb.nrg8_air_compressor.pressure_unit IS 'Pressure units of measure';
 
+----------------------------------------------------------------
+-- Table HYDRAULIC_PUMP
+----------------------------------------------------------------
+DROP TABLE IF EXISTS citydb.nrg8_hydraulic_pump CASCADE;
+CREATE TABLE IF NOT EXISTS citydb.nrg8_hydraulic_pump (
+	id integer PRIMARY KEY, 			-- This is a foreign key to conv_system.id
+	objectclass_id integer NOT NULL, 	-- This is a foreign key to objectclass.id
+	pump_type varchar, -- NOT NULL,	-- This is a foreign key to lu_pump.id
+	pressure numeric,
+	pressure_unit varchar
+);
+-- ALTER TABLE citydb.nrg8_hydraulic_pump OWNER TO postgres;
+
+CREATE INDEX nrg8_hydr_pump_objclass_id_fkx ON citydb.nrg8_hydraulic_pump USING btree (objectclass_id);
+CREATE INDEX nrg8_hydr_pump_pump_type_fkx ON citydb.nrg8_hydraulic_pump USING btree (pump_type);
+
+COMMENT ON COLUMN citydb.nrg8_hydraulic_pump.objectclass_id IS 'Objectclass ID of the pump';
+COMMENT ON COLUMN citydb.nrg8_hydraulic_pump.pump_type IS 'Type of pump';
+COMMENT ON COLUMN citydb.nrg8_hydraulic_pump.pressure IS 'Pressure';
+COMMENT ON COLUMN citydb.nrg8_hydraulic_pump.pressure_unit IS 'Pressure units of measure';
+
 
 -- ADD FOREIGN KEY CONTRAINTS
 
@@ -2205,6 +2240,12 @@ ALTER TABLE IF EXISTS citydb.nrg8_air_compressor ADD CONSTRAINT nrg8_air_compr_o
 ALTER TABLE IF EXISTS citydb.nrg8_air_compressor ADD CONSTRAINT nrg8_air_compr_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE IF EXISTS citydb.nrg8_air_compressor ADD CONSTRAINT nrg8_air_compr_nrg_lu_compr_fk FOREIGN KEY (compressor_type) REFERENCES citydb.nrg8_lu_compressor (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
+
+-- FOREIGN KEY constraint on Table HYDRAULIC_PUMP
+ALTER TABLE IF EXISTS citydb.nrg8_hydraulic_pump ADD CONSTRAINT nrg8_hydr_pump_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
+ALTER TABLE IF EXISTS citydb.nrg8_hydraulic_pump ADD CONSTRAINT nrg8_hydr_pump_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- ALTER TABLE IF EXISTS citydb.nrg8_hydraulic_pump ADD CONSTRAINT nrg8_hydr_pump_nrg_lu_pump_fk FOREIGN KEY (pump_type) REFERENCES citydb.nrg8_lu_pump (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
 
 -- EXECUTE THE STORED PROCEDURE TO SET THE SRID OF THE NEW GEOMETRY COLUMNS TO THE CURRENT ONE ON THE DATABASE
 SELECT citydb_pkg.nrg8_set_ade_columns_srid('citydb');

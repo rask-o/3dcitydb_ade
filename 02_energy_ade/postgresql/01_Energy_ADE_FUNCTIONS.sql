@@ -1351,6 +1351,7 @@ IF classname IS NOT NULL THEN
 	     classname = 'HeatPump' OR
 	     classname = 'CombinedHeatPower' OR
 	     classname = 'HeatExchanger' OR
+	     classname = 'HydraulicPump' OR
 	     classname = 'MechanicalVentilation' OR
 	     classname = 'Chiller' OR
 	     classname = 'AirCompressor'           THEN deleted_id := citydb_pkg.nrg8_delete_conv_system(co_id, schema_name);
