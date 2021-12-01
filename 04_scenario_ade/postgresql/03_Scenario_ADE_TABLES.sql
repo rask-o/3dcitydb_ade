@@ -142,6 +142,7 @@ CREATE INDEX scn2_oper_ctyobj_id_inx           ON citydb.scn2_operation USING bt
 CREATE INDEX scn2_oper_table_name_inx          ON citydb.scn2_operation USING btree (citydb_table_name);
 CREATE INDEX scn2_oper_column_name_inx         ON citydb.scn2_operation USING btree (citydb_column_name);
 CREATE INDEX scn2_oper_attrib_name_inx         ON citydb.scn2_operation USING btree (citydb_attrib_name);
+CREATE INDEX scn2_oper_tseries_id_inx          ON citydb.scn2_operation USING btree (time_series_id);
 
 COMMENT ON TABLE citydb.scn2_operation IS 'Operation, i.e. an update, insert or delete one, or a combination of them';
 
