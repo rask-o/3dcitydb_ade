@@ -1826,26 +1826,70 @@ COMMENT ON COLUMN citydb.nrg8_oil_exchanger.network_node_id IS 'Network node ID'
 COMMENT ON COLUMN citydb.nrg8_oil_exchanger.prim_oil_supplier IS 'Primary oil supplier';
 
 ----------------------------------------------------------------
--- Table WOOD_EXCHANGER
+-- Table WOOD_PELLETS_EXCHANGER
 ----------------------------------------------------------------
-DROP TABLE IF EXISTS citydb.nrg8_wood_exchanger CASCADE;
-CREATE TABLE IF NOT EXISTS citydb.nrg8_wood_exchanger (
+DROP TABLE IF EXISTS citydb.nrg8_wood_pellets_exchanger CASCADE;
+CREATE TABLE IF NOT EXISTS citydb.nrg8_wood_pellets_exchanger (
 	id integer PRIMARY KEY, 			-- This is a foreign key to conv_system.id
-	objectclass_id integer NOT NULL, 	-- This is a foreign key to objectclass.id
+	objectclass_id integer, 	-- This is a foreign key to objectclass.id
 	network_id integer,    				-- Link to a UtilityNetwork CityObject
 	network_node_id integer, 			-- Link to a UtilityNetwork CityObject
 	prim_wood_supplier varchar
 );
--- ALTER TABLE citydb.nrg8_wood_exchanger OWNER TO postgres;
+-- ALTER TABLE citydb.nrg8_wood_pellets_exchanger OWNER TO postgres;
 
-CREATE INDEX nrg8_wood_exchanger_objclass_id_fkx ON citydb.nrg8_wood_exchanger USING btree (objectclass_id);
-CREATE INDEX nrg8_wood_exchanger_network_id_fkx ON citydb.nrg8_wood_exchanger USING btree (network_id);
-CREATE INDEX nrg8_wood_exchanger_network_node_id_fkx ON citydb.nrg8_wood_exchanger USING btree (network_node_id);
+CREATE INDEX nrg8_wood_plts_exchanger_objclass_id_fkx ON citydb.nrg8_wood_pellets_exchanger USING btree (objectclass_id);
+CREATE INDEX nrg8_wood_plts_exchanger_network_id_fkx ON citydb.nrg8_wood_pellets_exchanger USING btree (network_id);
+CREATE INDEX nrg8_wood_plts_exchanger_network_node_id_fkx ON citydb.nrg8_wood_pellets_exchanger USING btree (network_node_id);
 
-COMMENT ON COLUMN citydb.nrg8_wood_exchanger.objectclass_id IS 'Objectclass ID of the wood exchanger';
-COMMENT ON COLUMN citydb.nrg8_wood_exchanger.network_id IS 'Network ID';
-COMMENT ON COLUMN citydb.nrg8_wood_exchanger.network_node_id IS 'Network node ID';
-COMMENT ON COLUMN citydb.nrg8_wood_exchanger.prim_wood_supplier IS 'Primary wood supplier';
+COMMENT ON COLUMN citydb.nrg8_wood_pellets_exchanger.objectclass_id IS 'Objectclass ID of the wood pellets exchanger';
+COMMENT ON COLUMN citydb.nrg8_wood_pellets_exchanger.network_id IS 'Network ID';
+COMMENT ON COLUMN citydb.nrg8_wood_pellets_exchanger.network_node_id IS 'Network node ID';
+COMMENT ON COLUMN citydb.nrg8_wood_pellets_exchanger.prim_wood_supplier IS 'Primary wood supplier';
+
+----------------------------------------------------------------
+-- Table WOOD_CHIPS_EXCHANGER
+----------------------------------------------------------------
+DROP TABLE IF EXISTS citydb.nrg8_wood_chips_exchanger CASCADE;
+CREATE TABLE IF NOT EXISTS citydb.nrg8_wood_chips_exchanger (
+	id integer PRIMARY KEY, 			-- This is a foreign key to conv_system.id
+	objectclass_id integer, 	-- This is a foreign key to objectclass.id
+	network_id integer,    				-- Link to a UtilityNetwork CityObject
+	network_node_id integer, 			-- Link to a UtilityNetwork CityObject
+	prim_wood_supplier varchar
+);
+-- ALTER TABLE citydb.nrg8_wood_chips_exchanger OWNER TO postgres;
+
+CREATE INDEX nrg8_wood_chps_exchanger_objclass_id_fkx ON citydb.nrg8_wood_chips_exchanger USING btree (objectclass_id);
+CREATE INDEX nrg8_wood_chps_exchanger_network_id_fkx ON citydb.nrg8_wood_chips_exchanger USING btree (network_id);
+CREATE INDEX nrg8_wood_chps_exchanger_network_node_id_fkx ON citydb.nrg8_wood_chips_exchanger USING btree (network_node_id);
+
+COMMENT ON COLUMN citydb.nrg8_wood_chips_exchanger.objectclass_id IS 'Objectclass ID of the wood chips exchanger';
+COMMENT ON COLUMN citydb.nrg8_wood_chips_exchanger.network_id IS 'Network ID';
+COMMENT ON COLUMN citydb.nrg8_wood_chips_exchanger.network_node_id IS 'Network node ID';
+COMMENT ON COLUMN citydb.nrg8_wood_chips_exchanger.prim_wood_supplier IS 'Primary wood supplier';
+
+----------------------------------------------------------------
+-- Table WOOD_LOGS_EXCHANGER
+----------------------------------------------------------------
+DROP TABLE IF EXISTS citydb.nrg8_wood_logs_exchanger CASCADE;
+CREATE TABLE IF NOT EXISTS citydb.nrg8_wood_logs_exchanger (
+	id integer PRIMARY KEY, 			-- This is a foreign key to conv_system.id
+	objectclass_id integer, 	-- This is a foreign key to objectclass.id
+	network_id integer,    				-- Link to a UtilityNetwork CityObject
+	network_node_id integer, 			-- Link to a UtilityNetwork CityObject
+	prim_wood_supplier varchar
+);
+-- ALTER TABLE citydb.nrg8_wood_logs_exchanger OWNER TO postgres;
+
+CREATE INDEX nrg8_wood_logs_exchanger_objclass_id_fkx ON citydb.nrg8_wood_logs_exchanger USING btree (objectclass_id);
+CREATE INDEX nrg8_wood_logs_exchanger_network_id_fkx ON citydb.nrg8_wood_logs_exchanger USING btree (network_id);
+CREATE INDEX nrg8_wood_logs_exchanger_network_node_id_fkx ON citydb.nrg8_wood_logs_exchanger USING btree (network_node_id);
+
+COMMENT ON COLUMN citydb.nrg8_wood_logs_exchanger.objectclass_id IS 'Objectclass ID of the wood logs exchanger';
+COMMENT ON COLUMN citydb.nrg8_wood_logs_exchanger.network_id IS 'Network ID';
+COMMENT ON COLUMN citydb.nrg8_wood_logs_exchanger.network_node_id IS 'Network node ID';
+COMMENT ON COLUMN citydb.nrg8_wood_logs_exchanger.prim_wood_supplier IS 'Primary wood supplier';
 
 ----------------------------------------------------------------
 -- Table MECHANICAL_VENTILATION

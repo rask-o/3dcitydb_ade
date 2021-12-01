@@ -2849,10 +2849,10 @@ $$
 LANGUAGE 'plpgsql';
 
 ----------------------------------------------------------------
--- Function NRG8_INSERT_WOOD_EXCHANGER
+-- Function NRG8_INSERT_WOOD_PELLETS_EXCHANGER
 ----------------------------------------------------------------
--- DROP FUNCTION IF EXISTS citydb_pkg.nrg8_insert_wood_exchanger (integer, integer, integer, integer, character varying) CASCADE;
-CREATE OR REPLACE FUNCTION citydb_pkg.nrg8_insert_wood_exchanger (
+-- DROP FUNCTION IF EXISTS citydb_pkg.nrg8_insert_wood_pellets_exchanger (integer, integer, integer, integer, character varying) CASCADE;
+CREATE OR REPLACE FUNCTION citydb_pkg.nrg8_insert_wood_pellets_exchanger (
   objectclass_id       integer,
   id                   integer,
   network_id           integer DEFAULT NULL,
@@ -2883,7 +2883,7 @@ BEGIN
 
 
 EXECUTE format('
-    INSERT INTO %I.nrg8_wood_exchanger (
+    INSERT INTO %I.nrg8_wood_pellets_exchanger (
      id,
      objectclass_id,
      network_id,
@@ -2901,7 +2901,123 @@ EXECUTE format('
 ) INTO inserted_id;
 RETURN inserted_id;
 EXCEPTION
-	WHEN OTHERS THEN RAISE NOTICE 'citydb_pkg.nrg8_insert_wood_exchanger (id: %): %', p_id, SQLERRM;
+	WHEN OTHERS THEN RAISE NOTICE 'citydb_pkg.nrg8_insert_wood_pellets_exchanger (id: %): %', p_id, SQLERRM;
+END;
+$$
+LANGUAGE 'plpgsql';
+
+----------------------------------------------------------------
+-- Function NRG8_INSERT_WOOD_CHIPS_EXCHANGER
+----------------------------------------------------------------
+-- DROP FUNCTION IF EXISTS citydb_pkg.nrg8_insert_wood_chips_exchanger (integer, integer, integer, integer, character varying) CASCADE;
+CREATE OR REPLACE FUNCTION citydb_pkg.nrg8_insert_wood_chips_exchanger (
+  objectclass_id       integer,
+  id                   integer,
+  network_id           integer DEFAULT NULL,
+  network_node_id      integer DEFAULT NULL,
+  prim_wood_supplier character varying DEFAULT NULL,
+  schema_name          varchar DEFAULT 'citydb'::varchar
+)
+RETURNS integer
+AS
+$$
+DECLARE
+  p_id                 integer;
+  p_objectclass_id     integer;
+  p_network_id         integer;
+  p_network_node_id    integer;
+  p_prim_wood_supplier character varying;
+--
+  p_schema_name        varchar;
+  inserted_id integer;
+BEGIN
+-- Pass values to internal prefixed variables to avoid potential homonymy issues
+  p_id                 :=id;
+  p_objectclass_id     :=objectclass_id;
+  p_network_id         :=network_id;
+  p_network_node_id    :=network_node_id;
+  p_prim_wood_supplier :=prim_wood_supplier;
+  p_schema_name        :=schema_name;
+
+
+EXECUTE format('
+    INSERT INTO %I.nrg8_wood_chips_exchanger (
+     id,
+     objectclass_id,
+     network_id,
+     network_node_id,
+     prim_wood_supplier
+    ) VALUES (
+    %L, %L, %L, %L, %L
+    ) RETURNING id',
+    p_schema_name,
+    p_id,
+    p_objectclass_id,
+    p_network_id,
+    p_network_node_id,
+    p_prim_wood_supplier
+) INTO inserted_id;
+RETURN inserted_id;
+EXCEPTION
+	WHEN OTHERS THEN RAISE NOTICE 'citydb_pkg.nrg8_insert_wood_chips_exchanger (id: %): %', p_id, SQLERRM;
+END;
+$$
+LANGUAGE 'plpgsql';
+
+----------------------------------------------------------------
+-- Function NRG8_INSERT_WOOD_LOGS_EXCHANGER
+----------------------------------------------------------------
+-- DROP FUNCTION IF EXISTS citydb_pkg.nrg8_insert_wood_logs_exchanger (integer, integer, integer, integer, character varying) CASCADE;
+CREATE OR REPLACE FUNCTION citydb_pkg.nrg8_insert_wood_logs_exchanger (
+  objectclass_id       integer,
+  id                   integer,
+  network_id           integer DEFAULT NULL,
+  network_node_id      integer DEFAULT NULL,
+  prim_wood_supplier character varying DEFAULT NULL,
+  schema_name          varchar DEFAULT 'citydb'::varchar
+)
+RETURNS integer
+AS
+$$
+DECLARE
+  p_id                 integer;
+  p_objectclass_id     integer;
+  p_network_id         integer;
+  p_network_node_id    integer;
+  p_prim_wood_supplier character varying;
+--
+  p_schema_name        varchar;
+  inserted_id integer;
+BEGIN
+-- Pass values to internal prefixed variables to avoid potential homonymy issues
+  p_id                 :=id;
+  p_objectclass_id     :=objectclass_id;
+  p_network_id         :=network_id;
+  p_network_node_id    :=network_node_id;
+  p_prim_wood_supplier :=prim_wood_supplier;
+  p_schema_name        :=schema_name;
+
+
+EXECUTE format('
+    INSERT INTO %I.nrg8_wood_logs_exchanger (
+     id,
+     objectclass_id,
+     network_id,
+     network_node_id,
+     prim_wood_supplier
+    ) VALUES (
+    %L, %L, %L, %L, %L
+    ) RETURNING id',
+    p_schema_name,
+    p_id,
+    p_objectclass_id,
+    p_network_id,
+    p_network_node_id,
+    p_prim_wood_supplier
+) INTO inserted_id;
+RETURN inserted_id;
+EXCEPTION
+	WHEN OTHERS THEN RAISE NOTICE 'citydb_pkg.nrg8_insert_wood_logs_exchanger (id: %): %', p_id, SQLERRM;
 END;
 $$
 LANGUAGE 'plpgsql';

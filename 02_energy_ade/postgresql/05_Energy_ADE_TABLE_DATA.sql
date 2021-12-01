@@ -126,7 +126,9 @@ INSERT INTO citydb.objectclass (id, classname, superclass_id, tablename, is_ade_
 (264,'ElectricityExchanger',242, 'nrg8_electricity_exchanger', 1,3),
 (265,'GasExchanger',242, 'nrg8_gas_exchanger', 1,3),
 (266,'OilExchanger',242, 'nrg8_oil_exchanger', 1,3),
-(267,'WoodExchanger',242, 'nrg8_wood_exchanger', 1,3),
+(267,'WoodPelletsExchanger',242, 'nrg8_wood_pellets_exchanger', 1,3),
+(268,'WoodChipsExchanger',242, 'nrg8_wood_chips_exchanger', 1,3),
+(269,'WoodLogsExchanger',242, 'nrg8_wood_logs_exchanger', 1,3),
 (270,'HydraulicPump',242, 'nrg8_hydraulic_pump', 1,3),
 -- DataTypes
 (257,'FloorArea',1, 'nrg8_dimensional_attrib', 1, 1),
@@ -485,7 +487,8 @@ VALUES
 ('SolarIrradiation',	'Solar irradiation',	NULL, NULL),
 ('Steam',        			'Steam',         			NULL, NULL),
 ('WoodChips',    			'Wood chips',    			NULL, NULL),
-('WoodPellets',  			'Wood pellets',  			NULL, NULL)
+('WoodPellets',  			'Wood pellets',  			NULL, NULL),
+('WoodLogs',    			'Wood logs',     			NULL, NULL)
 ;
 
 
