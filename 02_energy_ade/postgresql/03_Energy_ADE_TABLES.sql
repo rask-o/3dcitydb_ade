@@ -1063,6 +1063,7 @@ CREATE TABLE citydb.nrg8_usage_zone (
 -- ALTER TABLE citydb.nrg8_usage_zone OWNER TO postgres;
 
 CREATE INDEX nrg8_usage_zone_objclass_id_fkx ON citydb.nrg8_usage_zone USING btree (objectclass_id);
+CREATE INDEX nrg8_usage_zone_building_id_fkx ON citydb.nrg8_usage_zone USING btree (building_id);
 CREATE INDEX nrg8_usage_zone_type_inx ON citydb.nrg8_usage_zone USING btree (type, type_codespace);
 CREATE INDEX nrg8_usage_zone_heat_sched_id_fkx ON citydb.nrg8_usage_zone USING btree (heat_sched_id);
 CREATE INDEX nrg8_usage_zone_cool_sched_id_fkx ON citydb.nrg8_usage_zone USING btree (cool_sched_id);
