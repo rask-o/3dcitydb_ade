@@ -1148,6 +1148,7 @@ CREATE INDEX nrg8_occup_objclass_id_fkx ON citydb.nrg8_occupants USING btree (ob
 CREATE INDEX nrg8_occup_gmlid_inx ON citydb.nrg8_occupants USING btree (gmlid,gmlid_codespace);
 CREATE INDEX nrg8_occup_type_fkx ON citydb.nrg8_occupants USING btree (type);
 CREATE INDEX nrg8_occup_usage_zone_id_inx ON citydb.nrg8_occupants USING btree (usage_zone_id);
+CREATE INDEX nrg8_occup_sched_id_inx ON citydb.nrg8_occupants USING btree (sched_id);
 CREATE INDEX nrg8_occup_bdg_unit_id_inx ON citydb.nrg8_occupants USING btree (building_unit_id);
 
 COMMENT ON COLUMN citydb.nrg8_occupants.objectclass_id IS 'Objectclass ID of the occupants';
