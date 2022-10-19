@@ -109,19 +109,14 @@ LANGUAGE 'plpgsql'
 AS $BODY$
 DECLARE
   deleted_id INTEGER;
-  member_id INTEGER;
   flag integer;
 BEGIN
 -- delete cityobjects that are members of this citymodel (at least those not referenced by other city models)
 IF delete_members <> 0 THEN
 
-  FOR member_id IN EXECUTE format('SELECT co.id FROM %I.cityobject AS co, %I.cityobject_member AS com WHERE co.id=com.cityobject_id AND
-    com.citymodel_id=%L AND citydb_pkg.is_not_referenced(''cityobject_member'', ''cityobject_id'', co.id, ''citymodel_id'', %L, %L)',
-    schema_name, schema_name, cm_id, cm_id, schema_name) LOOP
-    IF member_id IS NOT NULL THEN
-		EXECUTE 'SELECT citydb_pkg.delete_cityobject($1, $2, 0, $3)' USING member_id, delete_members, schema_name;
-	END IF;
-  END LOOP;
+  EXECUTE format('SELECT citydb_pkg.delete_cityobject(co.id, $1, 0, $2) FROM %I.cityobject AS co JOIN %I.cityobject_member AS com ON co.id = com.cityobject_id AND com.citymodel_id = %L AND citydb_pkg.is_not_referenced(''cityobject_member'', ''cityobject_id'', co.id, ''citymodel_id'', %L, %L)',
+    schema_name, schema_name, cm_id, cm_id, schema_name) USING delete_members, schema_name;
+
   -- cleanup
   EXECUTE 'SELECT citydb_pkg.cleanup_implicit_geometries(1, $1)' USING schema_name;
   EXECUTE 'SELECT citydb_pkg.cleanup_appearances(1, $1)' USING schema_name;
