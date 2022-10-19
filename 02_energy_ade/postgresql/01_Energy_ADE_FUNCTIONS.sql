@@ -1354,7 +1354,14 @@ IF classname IS NOT NULL THEN
 	     classname = 'HydraulicPump' OR
 	     classname = 'MechanicalVentilation' OR
 	     classname = 'Chiller' OR
-	     classname = 'AirCompressor'           THEN deleted_id := citydb_pkg.nrg8_delete_conv_system(co_id, schema_name);
+	     classname = 'AirCompressor' OR
+	     classname = 'ElectricityExchanger' OR
+	     classname = 'GasExchanger' OR
+	     classname = 'OilExchanger' OR
+	     classname = 'WoodChipsExchanger' OR
+	     classname = 'WoodLogsExchanger' OR
+	     classname = 'WoodPelletsExchanger'
+      THEN deleted_id := citydb_pkg.nrg8_delete_conv_system(co_id, schema_name);
 	ELSE
         RAISE NOTICE 'Cannot delete chosen object with ID % and classname %.', co_id, classname;
     END CASE;
