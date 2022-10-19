@@ -2266,9 +2266,17 @@ ALTER TABLE IF EXISTS citydb.nrg8_gas_exchanger ADD CONSTRAINT nrg8_gas_exch_nrg
 ALTER TABLE IF EXISTS citydb.nrg8_oil_exchanger ADD CONSTRAINT nrg8_oil_exch_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
 ALTER TABLE IF EXISTS citydb.nrg8_oil_exchanger ADD CONSTRAINT nrg8_oil_exch_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
 
--- FOREIGN KEY constraint on Table WOOD_EXCHANGER
-ALTER TABLE IF EXISTS citydb.nrg8_wood_exchanger ADD CONSTRAINT nrg8_wood_exch_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
-ALTER TABLE IF EXISTS citydb.nrg8_wood_exchanger ADD CONSTRAINT nrg8_wood_exch_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
+-- FOREIGN KEY constraint on Table WOOD_CHIPS_EXCHANGER
+ALTER TABLE IF EXISTS citydb.nrg8_wood_chips_exchanger ADD CONSTRAINT nrg8_wood_chips_exch_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
+ALTER TABLE IF EXISTS citydb.nrg8_wood_chips_exchanger ADD CONSTRAINT nrg8_wood_chips_exch_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- FOREIGN KEY constraint on Table WOOD_LOGS_EXCHANGER
+ALTER TABLE IF EXISTS citydb.nrg8_wood_logs_exchanger ADD CONSTRAINT nrg8_wood_logs_exch_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
+ALTER TABLE IF EXISTS citydb.nrg8_wood_logs_exchanger ADD CONSTRAINT nrg8_wood_logs_exch_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
+
+-- FOREIGN KEY constraint on Table WOOD_PELLETS_EXCHANGER
+ALTER TABLE IF EXISTS citydb.nrg8_wood_pellets_exchanger ADD CONSTRAINT nrg8_wood_pellets_exch_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
+ALTER TABLE IF EXISTS citydb.nrg8_wood_pellets_exchanger ADD CONSTRAINT nrg8_wood_pellets_exch_nrg_conv_sys_fk FOREIGN KEY (id) REFERENCES citydb.nrg8_conv_system (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
 
 -- FOREIGN KEY constraint on Table MECH_VENTILATION
 ALTER TABLE IF EXISTS citydb.nrg8_mech_ventilation ADD CONSTRAINT nrg8_mech_vent_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
