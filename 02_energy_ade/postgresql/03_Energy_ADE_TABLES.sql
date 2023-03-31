@@ -501,6 +501,20 @@ COMMENT ON COLUMN citydb.nrg8_schedule.hours_per_day IS 'Usage hours per day, va
 COMMENT ON COLUMN citydb.nrg8_schedule.days_per_year IS 'Usage days per year, value in [0,366]';
 
 ----------------------------------------------------------------
+-- Table SCHEDULE_TO_CITYOBJECT
+----------------------------------------------------------------
+DROP TABLE IF EXISTS citydb.nrg8_schedule_to_cityobject CASCADE;
+CREATE TABLE citydb.nrg8_schedule_to_cityobject (
+	schedule_id integer NOT NULL, -- This is a foreign key to nrg8_schedule.id
+	cityobject_id integer NOT NULL, -- This is a foreign key to cityobject.id
+	CONSTRAINT nrg8_schedule_to_ctyobj_pk PRIMARY KEY (schedule_id, cityobject_id)
+);
+-- ALTER TABLE citydb.nrg8_schedule_to_cityobject OWNER TO postgres;
+
+CREATE INDEX nrg8_sched_to_co_sched_id_fkx ON citydb.nrg8_schedule_to_cityobject USING btree (schedule_id);
+CREATE INDEX nrg8_sched_to_co_co_id_fkx ON citydb.nrg8_schedule_to_cityobject USING btree (cityobject_id);
+
+----------------------------------------------------------------
 -- Table PERIOD_OF_YEAR
 ----------------------------------------------------------------
 DROP TABLE IF EXISTS citydb.nrg8_period_of_year CASCADE;
@@ -1991,6 +2005,10 @@ ALTER TABLE IF EXISTS citydb.nrg8_time_series_file ADD CONSTRAINT nrg8_tseries_f
 -- FOREIGN KEY constraint on Table SCHEDULE
 ALTER TABLE IF EXISTS citydb.nrg8_schedule ADD CONSTRAINT nrg8_sched_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
 ALTER TABLE IF EXISTS citydb.nrg8_schedule ADD CONSTRAINT nrg8_sched_nrg_tseries_fk FOREIGN KEY (time_series_id) REFERENCES citydb.nrg8_time_series (id) MATCH FULL ON UPDATE CASCADE ON DELETE SET NULL;
+
+-- FOREIGN KEY constraint on Table SCHEDULE_TO_CITYOBJECT
+ALTER TABLE IF EXISTS citydb.nrg8_schedule_to_cityobject ADD CONSTRAINT nrg8_sched_to_co_sched_fk FOREIGN KEY (schedule_id) REFERENCES citydb.nrg8_schedule (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE IF EXISTS citydb.nrg8_schedule_to_cityobject ADD CONSTRAINT nrg8_sched_to_co_co_fk FOREIGN KEY (cityobject_id) REFERENCES citydb.cityobject (id) MATCH FULL ON UPDATE CASCADE ON DELETE CASCADE;
 
 -- FOREIGN KEY constraint on Table PERIOD_OF_YEAR
 --ALTER TABLE IF EXISTS citydb.nrg8_period_of_year ADD CONSTRAINT nrg8_period_of_year_objclass_fk FOREIGN KEY (objectclass_id) REFERENCES citydb.objectclass (id) MATCH FULL ON UPDATE CASCADE ON DELETE NO ACTION;
