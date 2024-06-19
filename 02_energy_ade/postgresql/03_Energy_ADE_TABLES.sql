@@ -1060,7 +1060,7 @@ CREATE TABLE citydb.nrg8_usage_zone (
 	objectclass_id integer NOT NULL, 			-- This is a foreign key to objectclass.id
 	type varchar,
 	type_codespace varchar,
-	used_floors integer,
+	used_floors real,
 	int_gains_tot_value numeric,
 	int_gains_tot_value_unit varchar,
 	int_gains_conv numeric CHECK (int_gains_conv BETWEEN 0 AND 1),

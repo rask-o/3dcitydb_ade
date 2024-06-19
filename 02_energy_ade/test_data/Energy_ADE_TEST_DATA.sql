@@ -688,10 +688,10 @@ TRUNCATE citydb.nrg8_usage_zone CASCADE;
 INSERT INTO citydb.nrg8_usage_zone(id, objectclass_id, type, type_codespace, used_floors, 
 int_gains_tot_value, int_gains_tot_value_unit, int_gains_conv, int_gains_lat, int_gains_rad, 
 heat_sched_id, cool_sched_id, vent_sched_id, therm_zone_id, building_id, solid_id, multi_surf_geom) VALUES
-(72, 224, 'Commercial', NULL, 1, 37, 'W/m^2', 0.4, 0.2, 0.4, NULL, NULL, NULL,  26, 1, NULL, 'SRID=31256;MULTIPOLYGON(((0 0 10,5 0 10,5 10 15,0 10 15,0 0 10)))'::geometry), --id_usagezone_1
-(73, 224, 'School', NULL, 1, 56, 'W/m^2', 0.5, 0.3, 0.2, NULL, NULL, NULL,      27, 1, NULL, 'SRID=31256;MULTIPOLYGON(((0 0 10,5 0 10,5 10 15,0 10 15,0 0 10)))'::geometry), --id_usagezone_2
-(74, 224, 'Residential', NULL, 1, 16, 'W/m^2', 0.3, 0.4, 0.3, NULL, NULL, NULL, 28, 1, NULL, 'SRID=31256;MULTIPOLYGON(((0 0 10,5 0 10,5 10 15,0 10 15,0 0 10)))'::geometry), --id_usagezone_3
-(75, 224, 'Residential', NULL, 1, 19, 'W/m^2', 0.8, 0.1, 0.1, NULL, NULL, NULL, 29, 1, NULL, 'SRID=31256;MULTIPOLYGON(((0 0 10,5 0 10,5 10 15,0 10 15,0 0 10)))'::geometry); --id_usagezone_4
+(72, 224, 'Commercial', NULL, 1.0, 37, 'W/m^2', 0.4, 0.2, 0.4, NULL, NULL, NULL,  26, 1, NULL, 'SRID=31256;MULTIPOLYGON(((0 0 10,5 0 10,5 10 15,0 10 15,0 0 10)))'::geometry), --id_usagezone_1
+(73, 224, 'School', NULL, 1.0, 56, 'W/m^2', 0.5, 0.3, 0.2, NULL, NULL, NULL,      27, 1, NULL, 'SRID=31256;MULTIPOLYGON(((0 0 10,5 0 10,5 10 15,0 10 15,0 0 10)))'::geometry), --id_usagezone_2
+(74, 224, 'Residential', NULL, 1.0, 16, 'W/m^2', 0.3, 0.4, 0.3, NULL, NULL, NULL, 28, 1, NULL, 'SRID=31256;MULTIPOLYGON(((0 0 10,5 0 10,5 10 15,0 10 15,0 0 10)))'::geometry), --id_usagezone_3
+(75, 224, 'Residential', NULL, 1.0, 19, 'W/m^2', 0.8, 0.1, 0.1, NULL, NULL, NULL, 29, 1, NULL, 'SRID=31256;MULTIPOLYGON(((0 0 10,5 0 10,5 10 15,0 10 15,0 0 10)))'::geometry); --id_usagezone_4
 
 -- Data for BUILDING_UNIT
 INSERT INTO citydb.cityobject(id, objectclass_id, gmlid, gmlid_codespace, name, name_codespace, 

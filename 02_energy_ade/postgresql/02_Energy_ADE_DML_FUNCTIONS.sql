@@ -4717,7 +4717,7 @@ CREATE OR REPLACE FUNCTION citydb_pkg.nrg8_insert_usage_zone (
   id                   integer,
   type                 character varying DEFAULT NULL,
   type_codespace       character varying DEFAULT NULL,
-  used_floors          integer DEFAULT NULL,
+  used_floors          real DEFAULT NULL,
   int_gains_tot_value  numeric DEFAULT NULL,
   int_gains_tot_value_unit character varying DEFAULT NULL,
   int_gains_conv       numeric DEFAULT NULL,
@@ -4740,7 +4740,7 @@ DECLARE
   p_objectclass_id     integer;
   p_type               character varying;
   p_type_codespace     character varying;
-  p_used_floors        integer;
+  p_used_floors        real;
   p_int_gains_tot_value numeric;
   p_int_gains_tot_value_unit character varying;
   p_int_gains_conv     numeric;

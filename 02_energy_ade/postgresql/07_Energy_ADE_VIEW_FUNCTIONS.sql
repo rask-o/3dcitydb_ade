@@ -7719,7 +7719,7 @@ CREATE OR REPLACE FUNCTION citydb_view.nrg8_insert_usage_zone(
 --
   type                 character varying DEFAULT NULL,
   type_codespace       character varying DEFAULT NULL,
-  used_floors          integer DEFAULT NULL,
+  used_floors          real DEFAULT NULL,
   int_gains_tot_value  numeric DEFAULT NULL,
   int_gains_tot_value_unit character varying DEFAULT NULL,
   int_gains_conv       numeric DEFAULT NULL,
@@ -7756,7 +7756,7 @@ DECLARE
 --
   p_type                     character varying := type                    ;
   p_type_codespace           character varying := type_codespace          ;
-  p_used_floors              integer           := used_floors             ;
+  p_used_floors              real           := used_floors             ;
   p_int_gains_tot_value      numeric           := int_gains_tot_value     ;
   p_int_gains_tot_value_unit character varying := int_gains_tot_value_unit;
   p_int_gains_conv           numeric           := int_gains_conv          ;
